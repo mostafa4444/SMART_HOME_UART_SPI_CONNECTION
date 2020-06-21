@@ -12,9 +12,9 @@
 #define LCD_Control_Port DIO_PORTB
 #define LCD_Control_Dir DDRB_Reg
 
-#define LCD_RS DIO_ChannelB1
-#define LCD_RW DIO_ChannelB2
-#define LCD_E DIO_ChannelB3
+#define LCD_RS DIO_ChannelB2
+#define LCD_RW DIO_ChannelB1
+#define LCD_E DIO_ChannelB0
 
 void LCD_INIT(void);
 void LCD_COMMAND(uint8 cmd);
@@ -22,6 +22,5 @@ void LCD_Char(uint8 data);
 void LCD_STRING(char * string);
 void LCD_CharPos(uint8 line , uint8 pos , uint8 data);
 void LCD_StringPos(uint8 line , uint8 pos , char * string);
-void LCD_SPChar(uint8 loc , char * msg);
-
+void LCD_Clear();
 #endif /* LCD_H_ */

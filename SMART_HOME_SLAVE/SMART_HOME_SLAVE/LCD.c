@@ -22,15 +22,15 @@ void LCD_COMMAND(uint8 cmd){
 	Send_Command = (PORTA_Reg & 0x0F) | (cmd & 0xF0); //to send high nipple
 	DIO_WritePort(LCD_Data_Port,Send_Command);
 	DIO_WriteChannel(LCD_RS,STD_LOW);//set RS to zero
-	DIO_WriteChannel(LCD_E, STD_HIGH);
+	DIO_WriteChannel(LCD_E,STD_HIGH);
 	_delay_us(20);
-	DIO_WriteChannel(LCD_E, STD_LOW);
+	DIO_WriteChannel(LCD_E,STD_LOW);
 	_delay_ms(2);
 	
 	Send_Command = (PORTA_Reg & 0x0F) | (cmd<<4);//to send the Low nipple
 	DIO_WritePort(LCD_Data_Port,Send_Command);
 	DIO_WriteChannel(LCD_RS,STD_LOW);//set RS to zero
-	DIO_WriteChannel(LCD_E, STD_HIGH);
+	DIO_WriteChannel(LCD_E,STD_HIGH);
 	_delay_us(20);
 	DIO_WriteChannel(LCD_E,STD_LOW);
 	_delay_ms(2);
@@ -51,7 +51,7 @@ void LCD_Char(uint8 data){
 	Send_Command = (PORTA_Reg & 0x0F) | (data<<4);//to send the Low nipple
 	DIO_WritePort(LCD_Data_Port,Send_Command);
 	DIO_WriteChannel(LCD_RS,STD_HIGH);//set RS to zero
-	DIO_WriteChannel(LCD_E,STD_LOW);
+	DIO_WriteChannel(LCD_E,STD_HIGH);
 	_delay_us(20);
 	DIO_WriteChannel(LCD_E,STD_LOW);
 	_delay_ms(2);
@@ -102,15 +102,8 @@ void LCD_StringPos(uint8 line , uint8 pos , char * string){
 	
 }
 
-void LCD_SPChar(uint8 loc , char * msg){
-	
-	uint8 i = 0;
-	if(loc < 8){
-		LCD_COMMAND(0x40 + (loc*8));
-		for (i ; i < 8 ; i++)
-		{
-			LCD_Char(msg[i]);
-		}
-	}
-	
+
+void LCD_Clear(){
+	LCD_COMMAND(0x01);
+	_delay_ms(2);
 }

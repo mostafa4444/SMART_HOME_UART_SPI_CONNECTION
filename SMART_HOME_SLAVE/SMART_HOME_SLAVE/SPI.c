@@ -4,7 +4,6 @@
 
 
 void SPI_INIT(){
-	DIO_Init();
 	SPI_CFG->SPCR_PART.SPCR_REG.SPE_BIT = STD_HIGH;
 }
 uint8 SPI_TxRX(uint8 data){ // Transfer Data
